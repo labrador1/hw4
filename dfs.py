@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import sys
 
+#ファイルを読み込む
 def read():
 	links = pd.read_table("links.txt",header=None)
 	links.columns = ["START", "GOAL"]
@@ -9,6 +10,7 @@ def read():
 	pages.columns = ["INDEX", "WORD"]
 	return links, pages
 
+#幅優先探索
 def search(start, goal, links, pages):
 	g = []
 	start_index = pages[pages.WORD == start].INDEX.values
@@ -34,6 +36,7 @@ def search(start, goal, links, pages):
 					new_path.append(x)
 					q.append(new_path)				
 
+#スタートとゴールの設定
 def start_goal():
 	start = input("Please Enter Start: ")
 	goal = input("Please Enter Goal: ")
